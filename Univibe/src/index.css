@@ -11,7 +11,7 @@ body{
   display: grid;
   grid-template: 
     "n n" 56px
-    "p p" 100px
+    "p p" 150px
     "c c" ;
 }
 #nav{

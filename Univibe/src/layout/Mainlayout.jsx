@@ -1,4 +1,4 @@
-import Content from "../component/Content/Content";
+import Content from "../component/Content/Content1";
 import Nav from "../component/Nav/Nav";
 import Promote from "../component/Promote/Promote";
 

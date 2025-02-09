@@ -1,0 +1,21 @@
+#promote {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+}
+#promote .logo {
+    font-size: 55px;
+    font-weight: bold;
+    color: #D46332;
+    font-family: 'Georgia', serif;
+    padding-right: 60px;
+}
+#promote .pic1{
+    padding-left: 60px;
+}
+#promote .pic2{
+    padding-right: 60px;
+}
+
