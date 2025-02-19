@@ -1,68 +1,63 @@
-#content .allcardPopular {
+.allcardPopular {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 80px;
+    gap: 30px;
     margin: 20px auto;
     max-width: 1960px;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
-#content .card {
+.card {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 250px;
+    width: 200px;
     display: flex;
     flex-direction: column;
 }
 
-#content .photo {
+.photo {
     width: 100%;
     height: auto;
     overflow: hidden;
 }
 
-#content .photo img {
+.photo img {
     width: 100%;
     display: block;
     object-fit: cover;
 }
 
-#content .date {
+.date {
     color: #f26b8a;
     font-size: 0.9rem;
     font-weight: 600;
 }
 
-#content .Name {
+.Name {
     font-size: 1rem;
     font-weight: 700;
     color: #333;
 }
 
-#content .Locate {
+.Locate {
     font-size: 0.8rem;
     color: #999;
 }
-#content .header{
-    height: 80px;
+.header {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin: 0px 0px;   
+
 }
-#content .topic{
-    font-size: 40px;
+.topic {
+    font-size: 30px;
     color: black;
     font-family: 'Georgia', serif;
-    margin: 40px 0px;   
-    padding: 0 200px;      
-}
-@media (max-width: 768px) {
-    .cards-container {
-        justify-content: center;
-    }
-
-    .card {
-        width: calc(50% - 20px);
-    }
+    margin: 0px 0px;   
+    padding-right: 1100px;
 }

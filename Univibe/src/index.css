@@ -12,13 +12,17 @@ body{
   grid-template: 
     "n n" 56px
     "p p" 150px
-    "c c" ;
+    "c c" 435px
+    "c2 c2";
 }
 #nav{
   grid-area: n;
 }
 #content{
   grid-area: c;
+}
+#content2{
+  grid-area: c2;
 }
 #promote{
   grid-area: p;

@@ -1,21 +1,29 @@
 #promote {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #ccc;
-    background-color: white;
+    border-bottom: 1px solid #020202;
+    background-color: rgb(255, 223, 149);
+    gap: 200px;
 }
+
 #promote .logo {
     font-size: 55px;
     font-weight: bold;
     color: #D46332;
     font-family: 'Georgia', serif;
-    padding-right: 60px;
-}
-#promote .pic1{
-    padding-left: 60px;
-}
-#promote .pic2{
-    padding-right: 60px;
+    margin: 10px 0px;
+    padding: 0px 150px;
 }
 
+#promote .pic2 {
+    flex-shrink: 0;
+    width: 100px;
+    position: relative;
+    left: -40px;
+}
+
+#promote .pic1 {
+    flex-shrink: 0;
+    width: 100px;
+}
