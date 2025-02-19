@@ -1,6 +1,8 @@
 import React from 'react';
 import './NavStyle.css';
 import { FaSearch } from 'react-icons/fa';
+import { Link } from "react-router-dom";
+
 
 function Nav() {
   return (
@@ -21,7 +23,7 @@ function Nav() {
         <div className="menu-item">
           Faculty <span>▼</span>
         </div>
-        <div className="menu-item">Calendar</div>
+        <Link to="/detail" className="menu-item">Calendar</Link>
       </div>
     </section>
   );

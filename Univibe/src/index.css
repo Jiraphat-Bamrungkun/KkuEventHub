@@ -5,7 +5,7 @@ body{
   font-family: "Roboto", sans-serif;
   margin: 0;
 }
-#main-layout{
+#home-layout{
   width: 100vw;
   height: 100vh;
   display: grid;

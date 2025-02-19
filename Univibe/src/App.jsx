@@ -1,10 +1,12 @@
-import React from 'react'
-import Mainlayout from './layout/Mainlayout'
+import { BrowserRouter as Router } from "react-router-dom";
+import Mainlayout from "./layout/Mainlayout";
 
 function App() {
   return (
-    <Mainlayout></Mainlayout>
-  )
+    <Router basename="/">
+      <Mainlayout />
+    </Router>
+  );
 }
 
-export default App
+export default App;

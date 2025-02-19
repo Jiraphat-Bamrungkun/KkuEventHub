@@ -1,5 +1,6 @@
 import React from 'react'
 import './ContentStyle.css'
+import { Link } from 'react-router-dom'
 
 export default function Content() {
   return (
@@ -8,7 +9,7 @@ export default function Content() {
         <div className='topic'>Popular Event</div>
       </div>
       <div className='allcardPopular'>
-        <div className='card'>
+        <Link to="/detail" className='card'>
           <div className='photo'>
             <img src="https://placehold.co/250x400" alt="" />
           </div>
@@ -21,7 +22,7 @@ export default function Content() {
           <div className='Locate'>
             สนามกีฬา
           </div>
-        </div>
+        </Link>
         <div className='card'>
         <div className='photo'>
             <img src="https://placehold.co/250x400" alt="" />

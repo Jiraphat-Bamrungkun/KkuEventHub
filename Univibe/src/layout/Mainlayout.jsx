@@ -1,15 +1,16 @@
-import Content from "../component/Content/Content1";
-import Content2 from "../component/Content/Content2";
-import Nav from "../component/Nav/Nav";
-import Promote from "../component/Promote/Promote";
+import { Routes, Route } from "react-router-dom";
+import Home from "../pages/Home"; 
+import Detail from "../pages/Detail";
 
 function Mainlayout() {
   return (
-  <section id = "main-layout">
-    <Nav></Nav>
-    <Promote></Promote>
-    <Content></Content>
-    <Content2></Content2>
-  </section>);
+    <section id="main-layout">
+      <Routes basename="/">
+        <Route path="/" element={<Home />} />
+        <Route path="/detail" element={<Detail />} />
+      </Routes>
+    </section>
+  );
 }
-export default Mainlayout
+
+export default Mainlayout;
