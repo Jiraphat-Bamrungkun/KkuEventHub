@@ -27,3 +27,15 @@ body{
 #promote{
   grid-area: p;
 }
+#detail{
+  grid-area: d;
+}
+
+#detail-layout{
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template: 
+    "n n" 56px
+    "d d" 700px;
+}
