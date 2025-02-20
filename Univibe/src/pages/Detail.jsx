@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
+import Nav from "../component/Nav/Nav";
+import Detail from "../component/Detail/Detail";
 
-function Detail() {
+function DetailPage() {
   return (
-    <div>
-      <h1>หน้ารายละเอียด</h1>
-      <p>นี่คือหน้ารายละเอียด</p>
-      <Link to="/">กลับไปหน้าโฮม</Link>
-    </div>
+    <section id = "detail-layout">
+    <Nav></Nav> 
+    <Detail></Detail>
+    </section>
   );
 }
 
-export default Detail;
+export default DetailPage;
