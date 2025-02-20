@@ -23,7 +23,7 @@ function Nav() {
         <div className="menu-item">
           Faculty <span>▼</span>
         </div>
-        <Link to="/detail" className="menu-item">Calendar</Link>
+        <Link to="https://calendar.google.com/calendar/embed?src=univibekkuengineer%40gmail.com&ctz=Asia%2FBangkok" className="menu-item">Calendar</Link>
       </div>
     </section>
   );
