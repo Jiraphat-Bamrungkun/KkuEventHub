@@ -6,7 +6,7 @@ export default function Content2() {
   return (
     <section id="content2">
       <div className='header'>
-        <div className='topic'>Upoming Event</div>
+        <div className='topic2'>Upoming Event</div>
       </div>
       <div className='allcard'>
         <div className='card'>
