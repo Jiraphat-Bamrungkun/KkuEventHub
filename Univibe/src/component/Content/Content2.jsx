@@ -14,9 +14,9 @@ export default function Content2() {
             <img src="https://s3-alpha-sig.figma.com/img/da85/7b7e/895e9cf45921b0a7677dabff3fdf8562?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=gIOREt4-z4UJKiXqv9skH8-~Vrgxs1Vetpzx27tmCSYRZMHwLK6QuEwcwcnKjXlSe8FYXNYNAWL3T-MRLvv-pY5fe-CCuNewEb0P1E4N77zCMUzWnrDH6JEZjYjN-J-gH3SlbTMvgYxf2OhgC4v7hxoviGjBOzN2idWB1I5~TCiaM4g7nwsZbvNXAJKv7F3eR6JWdNydf9QENHwITOs4E3jLTp8gAlHvMCRkLNURuWnv0WiP9K0BhHT-nRZ4JdYfzA385v2384xXOUErO0Md0zHym~T-qUwmLyZQpvH37wQdDB0a~QIJRX0S43Z85NDf7O-esmB686YiCJLj~fzWFg__" alt="" />
           </div>
           <div className='date'>
-          อ, 23 กุมภาพันธ์          </div>
+            อ, 23 กุมภาพันธ์          </div>
           <div className='Name'>
-          KKU RACE TO LOVE          </div>
+            KKU RACE TO LOVE          </div>
           <div className='Locate'>
             <LocationOnIcon style={{ color: '#888' }} />
             หน้าคุ้มสีฐาน
@@ -39,15 +39,12 @@ export default function Content2() {
             <img src="https://s3-alpha-sig.figma.com/img/f9f0/4b46/78de848caead04e9cda5a391fb7dd268?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=qr7y4r-6yYD0QmyZ0D8siMTPmi6hUQ7NGPM1OhXN5vLCxHOQWlojs73hxALvbDs-2Dekx4x6jt41PsO08LXC1uzKwWpi26bU98CNOaGn9-aCu4c4UqsLZVZ~~VMONyd9apN1~vrtGwIBFP7sAfewST45h2zg0s4Xk4u36y0zsdXfkV64rBrSFLDWLm~1czxQUcDt~0Wsy7mNVOayQfZLRRHiWcQq7WnPfyWty7dxjNTLFYmcOwo40j02uNeSnee77SMmrhMnB9UxZtBqgzWUvUUt-CKP3MDOZddIPQ0QGh39cMV16FSr9UOe56MWJB3bU3T06v~I-EAxyrDixhBHyw__" alt="" />
           </div>
           <div className='date'>
-            23/2/2002
-          </div>
+            ศ, 14 ก.พ - อา, 16 ก.พ          </div>
           <div className='Name'>
-            ต้อนรับน้องใหม่ 68
-          </div>
+            ART LANE          </div>
           <div className='Locate'>
             <LocationOnIcon style={{ color: '#888' }} />
-            สนามกีฬา
-          </div>
+            สะพานขาว มข          </div>
         </div>
         <div className='card'>
           <div className='photo'>
@@ -82,15 +79,13 @@ export default function Content2() {
             <img src="https://s3-alpha-sig.figma.com/img/3709/a164/08154e98caa44b0181ad92512842a4d6?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=JM-56~uTR6-Q2uVyudaIMqiG0jDyM7UBdORlbb7w9vhdLJ82L1fWahsArFdNgrF4ANIiPO7~nT5rtF9lyqCHujJLLxaL1WLK5atgoWLo6Bzf6zpXafWFWFTZHJudx5t5EzuYf99SjplATCj2eibzqZKVmYsRA6rgpZmVcIvTV3r~JG8GmmFW2NWLitXi32jzhqCUEu0~wuzo-Re8nEwnhOQYE2uCWW0Tb9rZm5GwCvwarDoGFpYiqpUlSWgpkj7LN1megMzghk106K1RDEIW6IAd82pZ2POHvcG9Z7f4wBSO~fHp1FXEmyxlb412f2nFqq9GP--MaS9dWevlWyRtFg__" alt="" />
           </div>
           <div className='date'>
-            23/2/2002
-          </div>
+            ส, 22 กุมภาพันธ์          </div>
           <div className='Name'>
-            ต้อนรับน้องใหม่ 68
-          </div>
+            Science show
+            มายากลมนต์เปลี่ยนสี          </div>
           <div className='Locate'>
             <LocationOnIcon style={{ color: '#888' }} />
-            สนามกีฬา
-          </div>
+            พิพิธภัณฑ์ธรรมชาติวิทยา          </div>
         </div>
       </div>
     </section>

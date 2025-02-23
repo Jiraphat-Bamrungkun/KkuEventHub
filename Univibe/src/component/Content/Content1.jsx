@@ -83,15 +83,12 @@ export default function Content() {
             <img src="https://s3-alpha-sig.figma.com/img/24f1/2179/5176d5afb5c916ab5b9efac569b0e7d1?Expires=1740960000&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=mp3pSnuCwW1okIN6~PP6oHE2CYzRK-yDmdgAeeqDn-XDPG483aCoiGEz73D5oCHFMesuHFaovtIRLt5ycRGc3M15aD4DS4ryTvH6tmEFAgEVx8VQGtbg3~pQigHd-U7BGFr-rzSskag-ZrFo5aYlhvrV3Rfbb0PKXEDdsoQ0V-oXG2x8ovip9FOQb67IRpeD27ImWq65oTcKRI0eEuA~yF6kmKOiL1OknJh5xnp6FB-TU2~aMETqfWU0xOmQnbZyT0xXeLAP0HV7b~Gl6LLkYbgtkUuRKZlREImHUvSOrbgUD-1E2spxPJmROo2Vpro8uD81f4icfM7pvl9XWJYz~A__" alt="" />
           </div>
           <div className='date'>
-            23/2/2002
-          </div>
+          จ, 14 พ.ย - 16 พ.ย            </div>
           <div className='Name'>
-            ต้อนรับน้องใหม่ 68
-          </div>
+          สีฐานเฟสติวัล          </div>
           <div className='Locate'>
             <LocationOnIcon style={{ color: '#888' }} />
-            สนามกีฬา
-          </div>
+            ริมบึงสีฐาน          </div>
         </div>
       </div>
     </section>
