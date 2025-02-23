@@ -2,13 +2,13 @@ import React from 'react';
 import './NavStyle.css';
 import { FaSearch } from 'react-icons/fa';
 import { Link } from "react-router-dom";
-
+import logo from "../../assets/pic/logo1.png";
 
 function Nav() {
   return (
     <section id="nav">
       {/*logo*/}
-      <div className="logo">UniVibe</div>
+      <div className="logo"> <img src={logo} alt="" width={110} height={80} /></div>
 
       {/* search */}
       <div className="center">
