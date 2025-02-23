@@ -36,6 +36,6 @@ body{
   height: 100vh;
   display: grid;
   grid-template: 
-    "n n" 56px
+    "n n" 75px
     "d d" 700px;
 }

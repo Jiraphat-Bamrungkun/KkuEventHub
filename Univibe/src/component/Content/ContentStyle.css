@@ -6,6 +6,8 @@
     margin: 20px auto;
     max-width: 1960px;
     padding: 0 40px;
+    font-family: 'Itim', sans-serif;
+
 }
 
 .card {
@@ -20,7 +22,9 @@
 .photo {
     width: 100%;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: #333;
+    border: 1px solid #ccc; 
 }
 
 .photo img {
@@ -32,19 +36,18 @@
 
 .date {
     color: #f26b8a;
-    font-size: 0.9rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    font: 'Itim';
 }
 
 .Name {
-    font-size: 1rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #333;
 }
 
 .Locate {
-    font-size: 0.8rem;
+    font-size: 1.7rem;
     color: #999;
 }
 .header {
