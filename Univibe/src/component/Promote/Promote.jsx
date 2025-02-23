@@ -1,7 +1,7 @@
 import React from 'react'
 import './PromoteStyle.css'
 import pic1 from "../../assets/pic/Subject.png";
-import pic2 from "../../assets/pic/Subject 2.png";
+import pic2 from "../../assets/pic/Subject2.png";
 
 
 export default function Promote() {
