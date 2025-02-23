@@ -7,7 +7,7 @@ export default function Content2() {
       <div className='header'>
         <div className='topic'>Upoming Event</div>
       </div>
-      <div className='allcardPopular'>
+      <div className='allcard'>
         <div className='card'>
           <div className='photo'>
             <img src="https://placehold.co/250x400" alt="" />

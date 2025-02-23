@@ -8,7 +8,7 @@ export default function Content() {
       <div className='header'>
         <div className='topic'>Recent Event</div>
       </div>
-      <div className='allcardRecent'>
+      <div className='allcard'>
         <Link to="/detail" className='card'>
           <div className='photo'>
             <img src="https://placehold.co/250x400" alt="" />
