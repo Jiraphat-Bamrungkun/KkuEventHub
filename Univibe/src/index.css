@@ -10,9 +10,9 @@ body{
   height: 100vh;
   display: grid;
   grid-template: 
-    "n n" 56px
+    "n n" 75px
     "p p" 150px
-    "c c" 435px
+    "c c" 450px
     "c2 c2";
 }
 #nav{

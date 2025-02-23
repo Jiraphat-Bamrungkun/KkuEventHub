@@ -9,10 +9,8 @@
 }
 
 #nav .logo {
-    font-size: 44px;
-    font-weight: bold;
-    color: #D46332;
-    font-family: 'Georgia', serif;
+    padding: 1px;
+    margin-top: 30px;
 }
 
 #nav .center {
