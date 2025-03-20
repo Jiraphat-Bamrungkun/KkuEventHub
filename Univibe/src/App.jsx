@@ -2,6 +2,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Mainlayout from "./layout/Mainlayout";
 
 function App() {
+  console.log("App Component Rendered"); // Debug log
   return (
     <Router basename="/">
       <Mainlayout />
@@ -10,3 +11,4 @@ function App() {
 }
 
 export default App;
+

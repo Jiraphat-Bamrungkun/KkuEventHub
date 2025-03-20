@@ -21,7 +21,7 @@ function Nav() {
       {/* menu */}
       <div className="menu">
         <div className="menu-item">
-          Faculty <span>▼</span>
+          Event's Category <span>▼</span>
         </div>
         <Link to="https://calendar.google.com/calendar/embed?src=univibekkuengineer%40gmail.com&ctz=Asia%2FBangkok" className="menu-item">Calendar</Link>
       </div>

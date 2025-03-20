@@ -1,16 +1,16 @@
-import { Routes, Route } from "react-router-dom";
-import Home from "../pages/home"; 
-import DetailPage from "../pages/Detail";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import DetailPage from "../pages/DetailPage";
 
-function Mainlayout() {
+function App() {
   return (
-    <section id="main-layout">
-      <Routes basename="/">
-        <Route path="/" element={<Home />} />
-        <Route path="/detail" element={<DetailPage />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
       </Routes>
-    </section>
+    </BrowserRouter>
   );
 }
 
-export default Mainlayout;
+export default App;
