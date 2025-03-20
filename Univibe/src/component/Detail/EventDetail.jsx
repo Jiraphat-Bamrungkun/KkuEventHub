@@ -7,14 +7,16 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventIcon from '@mui/icons-material/Event';
 import GroupIcon from '@mui/icons-material/Group';
 import CategoryIcon from '@mui/icons-material/Category';
-import { fetchEventById } from "../api";
-import Nav from "../component/Nav/Nav";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { fetchEventById } from "../../api";
+import Nav from "../Nav/Nav";
 
 export default function Detail() {
-  const { id } = useParams(); // รับค่า id จาก URL
+  const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showDetailedView, setShowDetailedView] = useState(false);
 
   useEffect(() => {
     async function loadEvent() {
@@ -115,91 +117,278 @@ export default function Detail() {
     }
   };
 
+  // แปลง Google Drive URL เป็น direct link
+  const convertGoogleDriveUrl = (url) => {
+    if (!url || !url.includes('drive.google.com')) return url;
+
+    try {
+      // หากเป็น URL แบบ /d/FILE_ID/
+      const fileIdMatch = url.match(/\/d\/(.*?)(\/|$)/);
+      if (fileIdMatch && fileIdMatch[1]) {
+        return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
+      }
+
+      // หากเป็น URL แบบ id=FILE_ID
+      const idParamMatch = url.match(/id=(.*?)(&|$)/);
+      if (idParamMatch && idParamMatch[1]) {
+        return `https://drive.google.com/uc?export=view&id=${idParamMatch[1]}`;
+      }
+    } catch (e) {
+      console.error("Error converting Google Drive URL:", e);
+    }
+
+    return url;
+  };
+
+  const imageUrl = convertGoogleDriveUrl(event.image) || '/images/default-event.jpg';
+  const bgUrl = convertGoogleDriveUrl(event.bg) || convertGoogleDriveUrl(event.image) || '/images/default-bg.jpg';
+
   return (
     <>
       <Nav />
-      <section className="detail-section">
+      <section className={`detail-section ${showDetailedView ? 'detailed-view' : ''}`}>
         <div
           className="background-blur"
-          style={{ backgroundImage: `url(${event.bg || event.image || '/images/default-bg.jpg'})` }}
+          style={{ backgroundImage: `url(${bgUrl})` }}
         />
 
-        <div className="event-card">
-          <img
-            src={event.image || '/images/default-event.jpg'}
-            alt={event.title}
-            className="event-image"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/images/default-event.jpg";
-            }}
-          />
-          <div className="event-details">
-            <div className="event-title">{event.title}</div>
-            <div className="event-subtitle">{event.description}</div>
+        {!showDetailedView ? (
+          // หน้า Detail แบบเดิม
+          <>
+            <div className="event-card">
+              <img
+                src={imageUrl}
+                alt={event.title}
+                className="event-image"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "/images/default-event.jpg";
+                }}
+              />
+              <div className="event-details">
+                <div className="event-title">{event.title}</div>
+                <div className="event-subtitle">{event.description}</div>
 
-            <div className="event-info">
-              <CalendarTodayIcon style={{ color: '#888' }} />
-              {formatDisplayDate(event.date)}
-              {event.enddate && event.enddate !== event.date && (
-                <span> - {formatDisplayDate(event.enddate)}</span>
-              )}
-            </div>
+                <div className="event-info">
+                  <CalendarTodayIcon style={{ color: '#888' }} />
+                  {formatDisplayDate(event.date)}
+                  {event.enddate && event.enddate !== event.date && (
+                    <span> - {formatDisplayDate(event.enddate)}</span>
+                  )}
+                </div>
 
-            {event.time && (
-              <div className="event-info">
-                <AccessTimeIcon style={{ color: '#888' }} />
-                {event.time}
-                {event.endtime && (
-                  <span> - {event.endtime}</span>
+                {event.time && (
+                  <div className="event-info">
+                    <AccessTimeIcon style={{ color: '#888' }} />
+                    {event.time}
+                    {event.endtime && (
+                      <span> - {event.endtime}</span>
+                    )}
+                  </div>
                 )}
+
+                {event.location && (
+                  <div className="event-info">
+                    <LocationOnIcon style={{ color: '#888' }} />
+                    {event.location}
+                  </div>
+                )}
+
+                {event.category && (
+                  <div className="event-info">
+                    <CategoryIcon style={{ color: '#888' }} />
+                    {event.category}
+                  </div>
+                )}
+
+                {event.organizer && (
+                  <div className="event-info">
+                    <GroupIcon style={{ color: '#888' }} />
+                    จัดโดย: {event.organizer}
+                  </div>
+                )}
+
+                <div className="event-buttons">
+                  <a
+                    href={addToGoogleCalendar()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="event-button"
+                  >
+                    Add To Calendar
+                  </a>
+
+                  {event.evLink && (
+                    <a
+                      href={event.evLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="event-button"
+                    >
+                      ลงทะเบียน
+                    </a>
+                  )}
+                </div>
               </div>
-            )}
-
-            {event.location && (
-              <div className="event-info">
-                <LocationOnIcon style={{ color: '#888' }} />
-                {event.location}
-              </div>
-            )}
-
-            {event.category && (
-              <div className="event-info">
-                <CategoryIcon style={{ color: '#888' }} />
-                {event.category}
-              </div>
-            )}
-
-            {event.organizer && (
-              <div className="event-info">
-                <GroupIcon style={{ color: '#888' }} />
-                จัดโดย: {event.organizer}
-              </div>
-            )}
-
-            <div className="event-buttons">
-              <a
-                href={addToGoogleCalendar()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="event-button"
-              >
-                Add To Calendar
-              </a>
-
-              {event.evLink && (
-                <a
-                  href={event.evLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="event-button"
-                >
-                  ลงทะเบียน
-                </a>
-              )}
             </div>
-          </div>
-        </div>
+
+            <div className="more-info-toggle" onClick={() => setShowDetailedView(true)}>
+              <span>More Info</span>
+              <ExpandMoreIcon />
+            </div>
+          </>
+        ) : (
+          // หน้า Detail แบบใหม่ที่มีซ้ายขวา
+          <>
+            <div className="event-container">
+              {/* LEFT SIDE - Card Preview */}
+              <div className="event-card-preview">
+                <div className="preview-image">
+                  <img
+                    src={imageUrl}
+                    alt={event.title}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/images/default-event.jpg";
+                    }}
+                  />
+                </div>
+                <div className="preview-info">
+                  <h2>{event.title}</h2>
+                  <div className="preview-date">
+                    <CalendarTodayIcon />
+                    {formatDisplayDate(event.date)}
+                  </div>
+                  <div className="preview-location">
+                    <LocationOnIcon />
+                    {event.location || "ไม่ระบุสถานที่"}
+                  </div>
+                  <div className="preview-organizer">
+                    <GroupIcon />
+                    {event.organizer || "ไม่ระบุผู้จัด"}
+                  </div>
+                </div>
+              </div>
+
+              {/* RIGHT SIDE - Full Details */}
+              <div className="event-full-details">
+                <div className="event-header">
+                  <h1>{event.title}</h1>
+                  <div className="event-buttons">
+                    <a
+                      href={addToGoogleCalendar()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="event-button"
+                    >
+                      Add To Calendar
+                    </a>
+
+                    {event.evLink && (
+                      <a
+                        href={event.evLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="event-button"
+                      >
+                        ลงทะเบียน
+                      </a>
+                    )}
+                  </div>
+                </div>
+
+                <div className="event-info-container">
+                  <div className="event-description">
+                    <p>{event.description}</p>
+                  </div>
+
+                  <div className="event-details-grid">
+                    <div className="detail-item">
+                      <CalendarTodayIcon />
+                      <span>วันที่:</span>
+                      <span>
+                        {formatDisplayDate(event.date)}
+                        {event.enddate && event.enddate !== event.date && (
+                          <span> - {formatDisplayDate(event.enddate)}</span>
+                        )}
+                      </span>
+                    </div>
+
+                    {event.time && (
+                      <div className="detail-item">
+                        <AccessTimeIcon />
+                        <span>เวลา:</span>
+                        <span>
+                          {event.time}
+                          {event.endtime && <span> - {event.endtime}</span>}
+                        </span>
+                      </div>
+                    )}
+
+                    {event.duration && (
+                      <div className="detail-item">
+                        <AccessTimeIcon />
+                        <span>ระยะเวลา:</span>
+                        <span>{event.duration}</span>
+                      </div>
+                    )}
+
+                    {event.location && (
+                      <div className="detail-item">
+                        <LocationOnIcon />
+                        <span>สถานที่:</span>
+                        <span>{event.location}</span>
+                      </div>
+                    )}
+
+                    {event.category && (
+                      <div className="detail-item">
+                        <CategoryIcon />
+                        <span>ประเภท:</span>
+                        <span>{event.category}</span>
+                      </div>
+                    )}
+
+                    {event.organizer && (
+                      <div className="detail-item">
+                        <GroupIcon />
+                        <span>จัดโดย:</span>
+                        <span>{event.organizer}</span>
+                      </div>
+                    )}
+
+                    {event.participate && (
+                      <div className="detail-item">
+                        <GroupIcon />
+                        <span>ผู้เข้าร่วม:</span>
+                        <span>{event.participate}</span>
+                      </div>
+                    )}
+
+                    {event.dressCode && (
+                      <div className="detail-item">
+                        <span>การแต่งกาย:</span>
+                        <span>{event.dressCode}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  {event.socialMedia && (
+                    <div className="social-media">
+                      <h3>ติดตามได้ที่:</h3>
+                      <p>{event.socialMedia}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="more-info-toggle" onClick={() => setShowDetailedView(false)}>
+              <span>Simple View</span>
+              <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
+            </div>
+          </>
+        )}
 
         <div className="see-more">
           <Link to="/" className="see-more-button">กลับสู่หน้าหลัก</Link>
