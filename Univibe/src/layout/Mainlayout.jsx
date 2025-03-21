@@ -4,6 +4,7 @@ import DetailPage from "../pages/DetailPage";
 import SearchResultsPage from "../pages/SearchResultsPage";
 import Footer from "../component/Footer/Footer";
 
+
 function Mainlayout() {
   return (
     <>

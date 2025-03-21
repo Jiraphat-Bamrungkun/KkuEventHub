@@ -53,7 +53,7 @@ export const fetchEvents = async () => {
             evLink: row[14] || "", // Linkของเว็บไซต์Event
             socialMedia: row[15] || "", // ชื่อ Social Media เช่น Facebook หรือ Ig
             image: row[16] || "", // URL รูปภาพ
-            bg: row[17] || "", // URL พื้นหลัง
+            bg: row[16] || "", // URL พื้นหลัง
 
 
         }));

@@ -6,6 +6,7 @@ import UpcomingEvents from "../component/Content/UpcomingEvents";
 import { fetchEvents } from "../api";
 import "./Home.css";
 
+
 function Home() {
   const [recentEvents, setRecentEvents] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
@@ -82,6 +83,10 @@ function Home() {
       <Promote />
 
       <section id="events-container">
+      <div
+          className="background1-blur"
+          style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/0bab/9a40/8077e8cfaf0d7009fbb8615188f3215b?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AEpOvv-Mu02Rik9lIPOE9Q9HoMXKp-BX~LmdrOMiTr~~jA2vG8WD9K3DsKiX1G6uwM-cveJ1~xMGHyU0yztFHeWqNfwWMwp6uftyb0rDAotoBjVmGifZFIW5P4r1p3qDGpYkEik3vG13PHQlV0iI7fc22URJq~ec4UZtC5LUJWIWUinzLLDQco~Bjz8YXNz2hvYd4FWAQIIjU2oU2hymAFChy6aefAMc2~DllT-0evGip6KYozHS7veNtQu65HhVH8sBQXlR0sBmew2HwiTGCmPRJrqVBlW~5DR0Pe-Gc6GfIByCer-8p~T7XXkM1lZrm9Z8hEi17nOCR-Ywa44itA__)` }}
+        />
         {loading ? (
           <div className="loading-container">
             <div className="loading-spinner"></div>

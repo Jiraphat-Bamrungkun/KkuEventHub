@@ -4,23 +4,20 @@
     align-items: center;
     border-bottom: 1px solid #020202;
     padding: 20px 0;
-    margin-top: 75px;
-    /* เพิ่มระยะห่างด้านบนเท่ากับความสูงของ Nav */
+    margin-top: 0px;
     position: relative;
-    /* เพิ่ม position relative */
-    background-color: #ffffff;
-    /* เพิ่มสีพื้นหลังเพื่อให้แน่ใจว่ามองเห็นได้ */
     width: 100%;
+    height: 150px;
     box-sizing: border-box;
 }
 
 #promote .logo {
-    margin: 0 50px;
+    margin: 150px;
     padding: 0px;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 180px;
+    max-width: 150px;
 }
 
 #promote .logo img {
@@ -31,7 +28,7 @@
 #promote .pic1,
 #promote .pic2 {
     flex-shrink: 0;
-    max-width: 200px;
+    max-width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,8 +36,8 @@
 
 #promote .pic1 img,
 #promote .pic2 img {
-    max-width: 100%;
-    height: auto;
+    max-width: auto;
+    height: 150px;
 }
 
 /* Responsive styles */
@@ -78,9 +75,7 @@
     #promote .pic2 {
         order: 3;
         position: static;
-        /* ยกเลิก position */
         left: auto;
-        /* ยกเลิกการกำหนดตำแหน่ง left */
     }
 }
 
