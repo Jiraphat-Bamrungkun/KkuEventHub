@@ -33,7 +33,7 @@
 .category-header h2 {
     font-size: 24px;
     margin: 0;
-    color: #333;
+    color: #000000;
     font-family: 'Itim', sans-serif;
 }
 
@@ -41,7 +41,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: #666;
+    color: #eeeeee;
     text-decoration: none;
     font-size: 14px;
     transition: color 0.2s;
@@ -365,7 +365,7 @@
 
 .card-image {
     position: relative;
-    height: 200px;
+    height: 350px;
     overflow: hidden;
 }
 
