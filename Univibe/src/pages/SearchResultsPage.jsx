@@ -1,20 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft, FaFilter, FaSearch } from 'react-icons/fa';
+import { MdClear } from 'react-icons/md';
 import { LocationOn } from '@mui/icons-material';
 import Nav from '../component/Nav/Nav';
-import SearchBar from '../component/SearchBar/SearchBar';
 import { useSearchFilter } from '../contexts/SearchContext';
 import './SearchResults.css';
 
 function SearchResultsPage() {
     const {
         filteredEvents,
+        allEvents,
         searchTerm,
+        setSearchTerm,
         selectedCategory,
+        setSelectedCategory,
+        categories,
         loading,
-        error
+        error,
+        clearFilters
     } = useSearchFilter();
+
+    const [showFilters, setShowFilters] = useState(false);
+    const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm);
+
+    // จัดการการเปลี่ยนแปลงในช่องค้นหา
+    const handleSearchChange = (e) => {
+        setLocalSearchTerm(e.target.value);
+    };
+
+    // จัดการการส่งคำค้นหา
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setSearchTerm(localSearchTerm);
+    };
+
+    // เปลี่ยนหมวดหมู่ที่เลือก
+    const handleCategoryChange = (e) => {
+        setSelectedCategory(e.target.value);
+    };
 
     // ฟังก์ชันสำหรับแปลงวันที่ให้อยู่ในรูปแบบที่อ่านง่าย
     const formatDisplayDate = (dateString) => {
@@ -34,14 +58,17 @@ function SearchResultsPage() {
 
     // สร้างข้อความสรุปผลการค้นหา
     const getSearchSummary = () => {
+        const totalEvents = allEvents.length;
+        const foundEvents = filteredEvents.length;
+
         if (searchTerm && selectedCategory) {
-            return `ผลการค้นหา "${searchTerm}" ในหมวดหมู่ "${selectedCategory}"`;
+            return `ผลการค้นหา "${searchTerm}" ในหมวดหมู่ "${selectedCategory}" (${foundEvents} จาก ${totalEvents} รายการ)`;
         } else if (searchTerm) {
-            return `ผลการค้นหา "${searchTerm}"`;
+            return `ผลการค้นหา "${searchTerm}" (${foundEvents} จาก ${totalEvents} รายการ)`;
         } else if (selectedCategory) {
-            return `กิจกรรมในหมวดหมู่ "${selectedCategory}"`;
+            return `กิจกรรมในหมวดหมู่ "${selectedCategory}" (${foundEvents} จาก ${totalEvents} รายการ)`;
         }
-        return "ทุกกิจกรรม";
+        return `กิจกรรมทั้งหมด (${foundEvents} รายการ)`;
     };
 
     return (
@@ -49,15 +76,92 @@ function SearchResultsPage() {
             <Nav />
 
             <div className="search-container">
-                <SearchBar />
-
-                <div className="search-summary">
+                <div className="search-header">
                     <Link to="/" className="back-button">
                         <FaArrowLeft /> กลับหน้าหลัก
                     </Link>
                     <h2>{getSearchSummary()}</h2>
-                    <p>พบ {filteredEvents.length} รายการ</p>
                 </div>
+
+                <div className="search-tools">
+                    <div className="search-bar-container">
+                        <form onSubmit={handleSubmit} className="search-form">
+                            <div className="search-input-wrapper">
+                                <FaSearch className="search-icon" />
+                                <input
+                                    type="text"
+                                    className="search-input"
+                                    placeholder="ค้นหากิจกรรม..."
+                                    value={localSearchTerm}
+                                    onChange={handleSearchChange}
+                                />
+                                {localSearchTerm && (
+                                    <button
+                                        type="button"
+                                        className="clear-search-btn"
+                                        onClick={() => setLocalSearchTerm('')}
+                                        aria-label="Clear search"
+                                    >
+                                        <MdClear />
+                                    </button>
+                                )}
+                            </div>
+                            <button type="submit" className="search-button">
+                                ค้นหา
+                            </button>
+                        </form>
+                    </div>
+
+                    <div className="filter-controls">
+                        <button
+                            className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
+                            onClick={() => setShowFilters(!showFilters)}
+                        >
+                            <FaFilter />
+                            <span>ตัวกรอง</span>
+                            {selectedCategory && <span className="filter-indicator"></span>}
+                        </button>
+
+                        {(selectedCategory || searchTerm) && (
+                            <button className="clear-filters-btn" onClick={clearFilters}>
+                                ล้างตัวกรอง
+                            </button>
+                        )}
+                    </div>
+                </div>
+
+                {showFilters && (
+                    <div className="filters-panel">
+                        <div className="filter-group">
+                            <label htmlFor="category-filter">หมวดหมู่:</label>
+                            <select
+                                id="category-filter"
+                                value={selectedCategory}
+                                onChange={handleCategoryChange}
+                                className="category-select"
+                            >
+                                <option value="">ทั้งหมด</option>
+                                {categories.map((category, index) => (
+                                    <option key={index} value={category}>
+                                        {category}
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="filter-group">
+                            <label>ระยะเวลา:</label>
+                            <div className="checkbox-group">
+                                <label className="checkbox-label">
+                                    <input type="checkbox" /> กิจกรรมที่กำลังจะมาถึง
+                                </label>
+                                <label className="checkbox-label">
+                                    <input type="checkbox" /> กิจกรรมที่ผ่านมาแล้ว
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                )}
 
                 {loading ? (
                     <div className="loading-container">

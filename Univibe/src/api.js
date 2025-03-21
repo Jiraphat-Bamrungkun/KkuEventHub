@@ -51,9 +51,9 @@ export const fetchEvents = async () => {
             participate: row[12] || "", // Who can Participate
             dressCode: row[13] || "", // Dress Code
             evLink: row[14] || "", // Linkของเว็บไซต์Event
-            socialMedia: row[16] || "", // ชื่อ Social Media เช่น Facebook หรือ Ig
-            image: row[17] || "", // URL รูปภาพ
-            bg: row[18] || "", // URL พื้นหลัง
+            socialMedia: row[15] || "", // ชื่อ Social Media เช่น Facebook หรือ Ig
+            image: row[16] || "", // URL รูปภาพ
+            bg: row[17] || "", // URL พื้นหลัง
 
 
         }));

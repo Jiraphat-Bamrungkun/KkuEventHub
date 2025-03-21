@@ -3,29 +3,98 @@
     justify-content: center;
     align-items: center;
     border-bottom: 1px solid #020202;
-    gap: 10%;
+    padding: 20px 0;
+    margin-top: 75px;
+    /* เพิ่มระยะห่างด้านบนเท่ากับความสูงของ Nav */
+    position: relative;
+    /* เพิ่ม position relative */
+    background-color: #ffffff;
+    /* เพิ่มสีพื้นหลังเพื่อให้แน่ใจว่ามองเห็นได้ */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#promote .logo {
+    margin: 0 50px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 180px;
+}
+
+#promote .logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+#promote .pic1,
+#promote .pic2 {
+    flex-shrink: 0;
+    max-width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#promote .pic1 img,
+#promote .pic2 img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+    #promote {
+        gap: 5%;
+    }
+
+    #promote .logo {
+        margin: 0 3%;
+    }
+
+    #promote .pic1,
+    #promote .pic2 {
+        max-width: 150px;
+    }
 }
 
 @media (max-width: 768px) {
     #promote {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        padding: 15px 0;
+    }
+
+    #promote .logo {
+        order: 1;
+        margin: 0;
+    }
+
+    #promote .pic1 {
+        order: 2;
+    }
+
+    #promote .pic2 {
+        order: 3;
+        position: static;
+        /* ยกเลิก position */
+        left: auto;
+        /* ยกเลิกการกำหนดตำแหน่ง left */
     }
 }
 
-#promote .logo {
-    margin: 10px 0px;
-    padding: 0px 150px;
-}
+@media (max-width: 480px) {
+    #promote {
+        margin-top: 60px;
+    }
 
-#promote .pic2 {
-    flex-shrink: 0;
-    width: 100px;
-    position: relative;
-    left: -40px;
-}
+    #promote .pic1,
+    #promote .pic2 {
+        max-width: 120px;
+    }
 
-#promote .pic1 {
-    flex-shrink: 0;
-    width: 100px;
+    #promote .logo {
+        max-width: 140px;
+    }
 }
