@@ -53,13 +53,38 @@
   font-size: 4em;
   font-weight: bold;
   margin-bottom: 10px;
-
 }
 
 .event-subtitle {
   font-size: 2em;
   margin-bottom: 20px;
+  position: relative;
+  max-height: 120px;
+  /* ประมาณ 4 บรรทัดที่ font-size 2em */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
 
+/* เมื่อแสดงข้อความเต็ม */
+.event-subtitle.expanded {
+  max-height: 1000px;
+  /* ค่าที่มากพอที่จะแสดงข้อความทั้งหมด */
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: #f26b8a;
+  cursor: pointer;
+  font-size: 0.8em;
+  padding: 5px;
+  margin-left: 5px;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
 }
 
 .event-info {
@@ -68,7 +93,6 @@
   font-size: 2em;
   margin-bottom: 10px;
   gap: 5px;
-
 }
 
 .icon {
@@ -179,7 +203,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
-  
+
 }
 
 .preview-image img:hover {
@@ -314,6 +338,7 @@
   margin-bottom: 10px;
   color: #333;
 }
+
 .social-media pg {
   font-size: 1.8rem;
   margin-bottom: 10px;
