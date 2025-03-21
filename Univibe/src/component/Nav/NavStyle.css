@@ -3,7 +3,8 @@
     justify-content: center;
     align-items: center;
     padding: 10px 2%;
-    border-bottom: 1.5px solid #161515;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
     top: 0;
     left: 0;
     right: 0;
@@ -129,6 +130,25 @@
 
 #nav .menu-item:hover {
     text-decoration: underline;
+}
+
+/* เพิ่มสไตล์ใหม่สำหรับปุ่มกลม */
+#nav .rounded-button {
+    background-color: white;
+    border-radius: 20px;
+    padding: 8px 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f0f0f0;
+    transition: all 0.2s ease;
+    font-size: 1.6rem;
+    color: #333;
+}
+
+#nav .rounded-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    text-decoration: none;
+    background-color: #f8f8f8;
 }
 
 /* Search Suggestions */
@@ -257,6 +277,11 @@
     #nav .menu {
         width: 25%;
     }
+
+    #nav .rounded-button {
+        font-size: 1.4rem;
+        padding: 6px 12px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -281,6 +306,11 @@
         gap: 10px;
         font-size: 14px;
         justify-content: flex-end;
+    }
+
+    #nav .rounded-button {
+        font-size: 1.3rem;
+        padding: 5px 10px;
     }
 }
 
@@ -314,5 +344,10 @@
 
     #nav .search-input {
         font-size: 14px;
+    }
+
+    #nav .rounded-button {
+        font-size: 1.2rem;
+        padding: 4px 8px;
     }
 }

@@ -8,7 +8,7 @@ import { useSearchFilter } from '../../contexts/SearchContext';
 
 function Nav() {
   const navigate = useNavigate();
-  const location = useLocation(); // ใช้ตรวจสอบ URL ปัจจุบัน
+  const location = useLocation();
   const {
     setSearchTerm,
     searchInputValue,
@@ -242,18 +242,18 @@ function Nav() {
         )}
       </div>
 
-      {/* Menu */}
+      {/* Menu - ปรับแต่งใหม่ */}
       <div className="menu">
-        <Link to="/category" className="menu-item">
-          Event's Category
+        <Link to="/category" className="menu-item rounded-button">
+          หมวดหมู่กิจกรรม
         </Link>
         <Link
           to="https://calendar.google.com/calendar/embed?src=univibekkuengineer%40gmail.com&ctz=Asia%2FBangkok"
-          className="menu-item"
+          className="menu-item rounded-button"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Calendar
+          ปฏิทินกิจกรรม
         </Link>
       </div>
     </section>
