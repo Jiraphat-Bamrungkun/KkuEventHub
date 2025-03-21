@@ -2,15 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 100px;
+    padding: 2px 120px;
     border-bottom: 1px solid #ccc;
     background-color: white;
-    gap: 300px;
-    position: fixed;
+    gap: 250px;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    max-height: 70px;
 }
 
 #nav .logo {
@@ -31,7 +30,7 @@
     display: flex;
     align-items: center;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
     padding: 5px 10px;
     background-color: white;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);

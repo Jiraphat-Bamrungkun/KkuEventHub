@@ -7,7 +7,6 @@ function DetailPage() {
 
   return (
     <section id="detail-layout">
-      <Nav />
       <EventDetail eventId={id} />
     </section>
   );

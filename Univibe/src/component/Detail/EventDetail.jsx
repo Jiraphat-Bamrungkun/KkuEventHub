@@ -376,7 +376,7 @@ export default function Detail() {
                   {event.socialMedia && (
                     <div className="social-media">
                       <h3>ติดตามได้ที่:</h3>
-                      <p>{event.socialMedia}</p>
+                      <pg>{event.socialMedia}</pg>
                     </div>
                   )}
                 </div>

@@ -5,25 +5,22 @@ body{
   font-family: "Roboto", sans-serif;
   margin: 0;
 }
-#home-layout{
+#home-container{
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template: 
     "n n" 75px
     "p p" 150px
-    "c c" 450px
-    "c2 c2";
+    "e e" 450px;
 }
 #nav{
   grid-area: n;
 }
-#content{
-  grid-area: c;
+#events-container{
+  grid-area: e;
 }
-#content2{
-  grid-area: c2;
-}
+
 #promote{
   grid-area: p;
 }

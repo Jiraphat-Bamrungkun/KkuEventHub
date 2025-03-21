@@ -77,11 +77,11 @@ function Home() {
   }, []);
 
   return (
-    <div className="home-container">
+    <section id="home-container">
       <Nav />
       <Promote />
 
-      <div className="events-container">
+      <section id="events-container">
         {loading ? (
           <div className="loading-container">
             <div className="loading-spinner"></div>
@@ -93,8 +93,8 @@ function Home() {
             <RecentEvents recentEvents={recentEvents} />
           </>
         )}
-      </div>
-    </div>
+      </section>
+    </section>
   );
 }
 
