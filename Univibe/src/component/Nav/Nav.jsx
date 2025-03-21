@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import './NavStyle.css';
 import { FaSearch } from 'react-icons/fa';
 import { MdClear, MdLocationOn, MdPerson } from 'react-icons/md';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../../assets/pic/logo1.png";
 import { useSearchFilter } from '../../contexts/SearchContext';
 
 function Nav() {
   const navigate = useNavigate();
+  const location = useLocation(); // ใช้ตรวจสอบ URL ปัจจุบัน
   const {
     setSearchTerm,
     searchInputValue,
@@ -20,6 +21,9 @@ function Nav() {
 
   const searchInputRef = useRef(null);
   const suggestionsRef = useRef(null);
+
+  // ตรวจสอบว่าอยู่ในหน้า EventCategoryPage หรือไม่
+  const isEventCategoryPage = location.pathname === '/category';
 
   // จัดการคลิกนอก suggestions เพื่อปิด
   useEffect(() => {
@@ -43,9 +47,11 @@ function Nav() {
   // จัดการการส่งคำค้นหา
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchTerm(searchInputValue);
-    setShowSuggestions(false);
-    navigate('/search');
+    if (searchInputValue.trim()) {
+      setSearchTerm(searchInputValue);
+      setShowSuggestions(false);
+      navigate('/search');
+    }
   };
 
   // จัดการการเปลี่ยนแปลงในช่องค้นหา
@@ -156,79 +162,89 @@ function Nav() {
     }
   };
 
+  // จัดการคลิกที่ suggestion
+  const handleSuggestionClick = (suggestion) => {
+    selectSuggestion(suggestion);
+    setShowSuggestions(false);
+    setTimeout(() => {
+      navigate('/search');
+    }, 100);
+  };
+
   return (
     <section id="nav">
-      {/*logo*/}
+      {/* Logo */}
       <Link to="/" className="logo">
         <img src={logo} alt="Univibe Logo" width={110} height={80} />
       </Link>
 
-      {/* search */}
+      {/* Search - ไม่แสดงในหน้า EventCategoryPage */}
       <div className="center">
-        <form onSubmit={handleSearch} className="search-box">
-          <FaSearch className="search-icon" />
-          <input
-            ref={searchInputRef}
-            type="text"
-            className="search-input"
-            placeholder="ค้นหากิจกรรม..."
-            value={searchInputValue}
-            onChange={handleSearchChange}
-            onKeyDown={handleKeyDown}
-            onFocus={() => {
-              if (searchInputValue.trim().length >= 2) {
-                setShowSuggestions(true);
-              }
-            }}
-            autoComplete="off"
-          />
-          {searchInputValue && (
-            <button
-              type="button"
-              className="clear-search-btn"
-              onClick={handleClearSearch}
-              aria-label="Clear search"
-            >
-              <MdClear />
-            </button>
-          )}
-          <button type="submit" className="search-button">ค้นหา</button>
-        </form>
-
-        {/* Search Suggestions */}
-        {showSuggestions && searchSuggestions.length > 0 && (
-          <div className="search-suggestions" ref={suggestionsRef}>
-            {searchSuggestions.map((suggestion, index) => (
-              <button
-                key={`${suggestion.type}-${index}`}
-                className="suggestion-item"
-                onClick={() => {
-                  selectSuggestion(suggestion);
-                  navigate('/search');
+        {!isEventCategoryPage && (
+          <>
+            <form onSubmit={handleSearch} className="search-box">
+              <FaSearch className="search-icon" />
+              <input
+                ref={searchInputRef}
+                type="text"
+                className="search-input"
+                placeholder="ค้นหากิจกรรม..."
+                value={searchInputValue}
+                onChange={handleSearchChange}
+                onKeyDown={handleKeyDown}
+                onFocus={() => {
+                  if (searchInputValue.trim().length >= 2) {
+                    setShowSuggestions(true);
+                  }
                 }}
-                onKeyDown={(e) => handleSuggestionKeyDown(e, index, suggestion)}
-                tabIndex={0}
-              >
-                <div className="suggestion-content">
-                  {getSuggestionIcon(suggestion.type)}
-                  <div className="suggestion-text">
-                    <span className="suggestion-value">
-                      {highlightMatch(suggestion.value, searchInputValue)}
-                    </span>
-                    <span className="suggestion-type">
-                      {getSuggestionTypeLabel(suggestion.type)}
-                    </span>
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
+                autoComplete="off"
+              />
+              {searchInputValue && (
+                <button
+                  type="button"
+                  className="clear-search-btn"
+                  onClick={handleClearSearch}
+                  aria-label="Clear search"
+                >
+                  <MdClear />
+                </button>
+              )}
+              <button type="submit" className="search-button">ค้นหา</button>
+            </form>
+
+            {/* Search Suggestions */}
+            {showSuggestions && searchSuggestions.length > 0 && (
+              <div className="search-suggestions" ref={suggestionsRef}>
+                {searchSuggestions.map((suggestion, index) => (
+                  <button
+                    key={`${suggestion.type}-${index}`}
+                    className="suggestion-item"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                    onKeyDown={(e) => handleSuggestionKeyDown(e, index, suggestion)}
+                    tabIndex={0}
+                  >
+                    <div className="suggestion-content">
+                      {getSuggestionIcon(suggestion.type)}
+                      <div className="suggestion-text">
+                        <span className="suggestion-value">
+                          {highlightMatch(suggestion.value, searchInputValue)}
+                        </span>
+                        <span className="suggestion-type">
+                          {getSuggestionTypeLabel(suggestion.type)}
+                        </span>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
 
-      {/* menu */}
+      {/* Menu */}
       <div className="menu">
-        <Link to="/search" className="menu-item">
+        <Link to="/category" className="menu-item">
           Event's Category
         </Link>
         <Link
