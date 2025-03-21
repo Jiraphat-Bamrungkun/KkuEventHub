@@ -15,7 +15,10 @@ export function SearchFilterProvider({ children }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [showSuggestions, setShowSuggestions] = useState(false); // ควบคุมการแสดง suggestions
-    
+
+    // เพิ่มสถานะสำหรับกรองตามระยะเวลา
+    const [showUpcomingEvents, setShowUpcomingEvents] = useState(false);
+    const [showPastEvents, setShowPastEvents] = useState(false);
 
     // ดึงข้อมูลกิจกรรมทั้งหมดเมื่อ component โหลด
     useEffect(() => {
@@ -42,10 +45,27 @@ export function SearchFilterProvider({ children }) {
         loadEvents();
     }, []);
 
-    // กรองกิจกรรมเมื่อมีการเปลี่ยนแปลงคำค้นหาหรือหมวดหมู่
+    // กรองกิจกรรมเมื่อมีการเปลี่ยนแปลงคำค้นหาหรือหมวดหมู่หรือตัวกรองเวลา
     useEffect(() => {
         const filterEvents = () => {
             let results = [...allEvents];
+            const now = new Date();
+
+            // กรองตามระยะเวลา
+            if (showUpcomingEvents && !showPastEvents) {
+                // แสดงเฉพาะกิจกรรมที่กำลังจะมาถึง
+                results = results.filter(event => {
+                    const eventDate = new Date(event.date);
+                    return eventDate >= now;
+                });
+            } else if (!showUpcomingEvents && showPastEvents) {
+                // แสดงเฉพาะกิจกรรมที่ผ่านมาแล้ว
+                results = results.filter(event => {
+                    const eventDate = new Date(event.date);
+                    return eventDate < now;
+                });
+            }
+            // ถ้าทั้งสองเงื่อนไขเป็น true หรือ false ทั้งคู่ ให้แสดงทั้งหมด
 
             // กรองตามคำค้นหา
             if (searchTerm.trim() !== "") {
@@ -67,7 +87,7 @@ export function SearchFilterProvider({ children }) {
         };
 
         filterEvents();
-    }, [searchTerm, selectedCategory, allEvents]);
+    }, [searchTerm, selectedCategory, allEvents, showUpcomingEvents, showPastEvents]);
 
     // สร้าง search suggestions จากคำที่กำลังพิมพ์
     const searchSuggestions = useMemo(() => {
@@ -127,6 +147,8 @@ export function SearchFilterProvider({ children }) {
         setSearchTerm("");
         setSearchInputValue("");
         setSelectedCategory("");
+        setShowUpcomingEvents(false);
+        setShowPastEvents(false);
     };
 
     // ฟังก์ชันสำหรับเลือก suggestion
@@ -155,7 +177,11 @@ export function SearchFilterProvider({ children }) {
                 searchSuggestions,
                 showSuggestions,
                 setShowSuggestions,
-                selectSuggestion
+                selectSuggestion,
+                showUpcomingEvents,
+                setShowUpcomingEvents,
+                showPastEvents,
+                setShowPastEvents
             }}
         >
             {children}

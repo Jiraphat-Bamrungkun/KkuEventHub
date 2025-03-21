@@ -19,7 +19,11 @@ function SearchResultsPage() {
         categories,
         loading,
         error,
-        clearFilters
+        clearFilters,
+        showUpcomingEvents,
+        setShowUpcomingEvents,
+        showPastEvents,
+        setShowPastEvents
     } = useSearchFilter();
 
     const [showFilters, setShowFilters] = useState(false);
@@ -39,6 +43,15 @@ function SearchResultsPage() {
     // เปลี่ยนหมวดหมู่ที่เลือก
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
+    };
+
+    // จัดการการเปลี่ยนแปลงของตัวกรองระยะเวลา
+    const handleUpcomingEventsChange = (e) => {
+        setShowUpcomingEvents(e.target.checked);
+    };
+
+    const handlePastEventsChange = (e) => {
+        setShowPastEvents(e.target.checked);
     };
 
     // ฟังก์ชันสำหรับแปลงวันที่ให้อยู่ในรูปแบบที่อ่านง่าย
@@ -61,27 +74,42 @@ function SearchResultsPage() {
     const getSearchSummary = () => {
         const totalEvents = allEvents.length;
         const foundEvents = filteredEvents.length;
+        let searchText = '';
 
-        if (searchTerm && selectedCategory) {
-            return `ผลการค้นหา "${searchTerm}" ในหมวดหมู่ "${selectedCategory}" (${foundEvents} จาก ${totalEvents} รายการ)`;
-        } else if (searchTerm) {
-            return `ผลการค้นหา "${searchTerm}" (${foundEvents} จาก ${totalEvents} รายการ)`;
-        } else if (selectedCategory) {
-            return `กิจกรรมในหมวดหมู่ "${selectedCategory}" (${foundEvents} จาก ${totalEvents} รายการ)`;
+        if (searchTerm) {
+            searchText += `ค้นหา "${searchTerm}" `;
         }
+
+        if (selectedCategory) {
+            searchText += `ในหมวดหมู่ "${selectedCategory}" `;
+        }
+
+        if (showUpcomingEvents && !showPastEvents) {
+            searchText += 'เฉพาะกิจกรรมที่กำลังจะมาถึง ';
+        } else if (!showUpcomingEvents && showPastEvents) {
+            searchText += 'เฉพาะกิจกรรมที่ผ่านมาแล้ว ';
+        }
+
+        if (searchText) {
+            return `ผลการ${searchText.trim()} (${foundEvents} จาก ${totalEvents} รายการ)`;
+        }
+
         return `กิจกรรมทั้งหมด (${foundEvents} รายการ)`;
     };
 
+    // ตรวจสอบว่ามีการใช้ตัวกรองใดๆ หรือไม่
+    const hasActiveFilters = searchTerm || selectedCategory || showUpcomingEvents || showPastEvents;
+
     return (
         <div className="search-results-page">
-            
+
             <Nav />
 
             <div className="search-container">
-            <div
-          className="background2-blur"
-          style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/0bab/9a40/8077e8cfaf0d7009fbb8615188f3215b?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AEpOvv-Mu02Rik9lIPOE9Q9HoMXKp-BX~LmdrOMiTr~~jA2vG8WD9K3DsKiX1G6uwM-cveJ1~xMGHyU0yztFHeWqNfwWMwp6uftyb0rDAotoBjVmGifZFIW5P4r1p3qDGpYkEik3vG13PHQlV0iI7fc22URJq~ec4UZtC5LUJWIWUinzLLDQco~Bjz8YXNz2hvYd4FWAQIIjU2oU2hymAFChy6aefAMc2~DllT-0evGip6KYozHS7veNtQu65HhVH8sBQXlR0sBmew2HwiTGCmPRJrqVBlW~5DR0Pe-Gc6GfIByCer-8p~T7XXkM1lZrm9Z8hEi17nOCR-Ywa44itA__)` }}
-        />
+                <div
+                    className="background2-blur"
+                    style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/0bab/9a40/8077e8cfaf0d7009fbb8615188f3215b?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AEpOvv-Mu02Rik9lIPOE9Q9HoMXKp-BX~LmdrOMiTr~~jA2vG8WD9K3DsKiX1G6uwM-cveJ1~xMGHyU0yztFHeWqNfwWMwp6uftyb0rDAotoBjVmGifZFIW5P4r1p3qDGpYkEik3vG13PHQlV0iI7fc22URJq~ec4UZtC5LUJWIWUinzLLDQco~Bjz8YXNz2hvYd4FWAQIIjU2oU2hymAFChy6aefAMc2~DllT-0evGip6KYozHS7veNtQu65HhVH8sBQXlR0sBmew2HwiTGCmPRJrqVBlW~5DR0Pe-Gc6GfIByCer-8p~T7XXkM1lZrm9Z8hEi17nOCR-Ywa44itA__)` }}
+                />
                 <div className="search-header">
                     <Link to="/" className="back-button">
                         <FaArrowLeft /> กลับหน้าหลัก
@@ -125,10 +153,10 @@ function SearchResultsPage() {
                         >
                             <FaFilter />
                             <span>ตัวกรอง</span>
-                            {selectedCategory && <span className="filter-indicator"></span>}
+                            {(selectedCategory || showUpcomingEvents || showPastEvents) && <span className="filter-indicator"></span>}
                         </button>
 
-                        {(selectedCategory || searchTerm) && (
+                        {hasActiveFilters && (
                             <button className="clear-filters-btn" onClick={clearFilters}>
                                 ล้างตัวกรอง
                             </button>
@@ -159,10 +187,20 @@ function SearchResultsPage() {
                             <label>ระยะเวลา:</label>
                             <div className="checkbox-group">
                                 <label className="checkbox-label">
-                                    <input type="checkbox" /> กิจกรรมที่กำลังจะมาถึง
+                                    <input
+                                        type="checkbox"
+                                        checked={showUpcomingEvents}
+                                        onChange={handleUpcomingEventsChange}
+                                    />
+                                    กิจกรรมที่กำลังจะมาถึง
                                 </label>
                                 <label className="checkbox-label">
-                                    <input type="checkbox" /> กิจกรรมที่ผ่านมาแล้ว
+                                    <input
+                                        type="checkbox"
+                                        checked={showPastEvents}
+                                        onChange={handlePastEventsChange}
+                                    />
+                                    กิจกรรมที่ผ่านมาแล้ว
                                 </label>
                             </div>
                         </div>
