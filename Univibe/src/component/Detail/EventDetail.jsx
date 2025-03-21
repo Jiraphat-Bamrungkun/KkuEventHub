@@ -17,6 +17,7 @@ export default function Detail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showDetailedView, setShowDetailedView] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
 
   useEffect(() => {
     async function loadEvent() {
@@ -71,6 +72,19 @@ export default function Detail() {
       </div>
     );
   }
+
+  // ฟังก์ชันสำหรับตัดข้อความให้เหลือแค่ 4 บรรทัด
+  const truncateDescription = (text, lines = 4) => {
+    if (!text) return "";
+
+    // คำนวณความยาวโดยประมาณต่อบรรทัด
+    const charsPerLine = 60;
+    const maxLength = lines * charsPerLine;
+
+    if (text.length <= maxLength) return text;
+
+    return text.substring(0, maxLength) + "...";
+  };
 
   // ฟังก์ชันสำหรับลิงก์ไปยัง Google Calendar
   const addToGoogleCalendar = () => {
@@ -167,7 +181,22 @@ export default function Detail() {
               />
               <div className="event-details">
                 <div className="event-title">{event.title}</div>
-                <div className="event-subtitle">{event.description}</div>
+                <div className={`event-subtitle ${showFullDescription ? 'expanded' : ''}`}>
+                  {showFullDescription ? event.description : truncateDescription(event.description)}
+
+                  {/* ปุ่มแสดงเพิ่มเติม/น้อยลง เฉพาะเมื่อข้อความยาวเกิน 4 บรรทัด */}
+                  {event.description && event.description.length > 240 && (
+                    <button
+                      className="read-more-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowFullDescription(!showFullDescription);
+                      }}
+                    >
+                      {showFullDescription ? "แสดงน้อยลง" : "อ่านเพิ่มเติม..."}
+                    </button>
+                  )}
+                </div>
 
                 <div className="event-info">
                   <CalendarTodayIcon style={{ color: '#888' }} />

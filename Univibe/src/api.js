@@ -2,27 +2,7 @@ const SHEET_ID = "1F478zb2ipoi2R6rQVCJEHxKZETrw-Dh7JB4_c1nTgBE";
 const SHEET_NAME = "Form%20Responses%201";
 const API_KEY = "AIzaSyDdncgQkirfeSfeYIkO-fL_e0okQDB54IY";
 
-function convertGoogleDriveUrl(url) {
-    if (!url || !url.includes('drive.google.com')) return url;
 
-    try {
-        // หากเป็น URL แบบ /d/FILE_ID/
-        const fileIdMatch = url.match(/\/d\/(.*?)(\/|$)/);
-        if (fileIdMatch && fileIdMatch[1]) {
-            return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
-        }
-
-        // หากเป็น URL แบบ id=FILE_ID
-        const idParamMatch = url.match(/id=(.*?)(&|$)/);
-        if (idParamMatch && idParamMatch[1]) {
-            return `https://drive.google.com/uc?export=view&id=${idParamMatch[1]}`;
-        }
-    } catch (e) {
-        console.error("Error converting Google Drive URL:", e);
-    }
-
-    return url;
-}
 
 export const fetchEvents = async () => {
     const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/${SHEET_NAME}!A:R?key=${API_KEY}`;
