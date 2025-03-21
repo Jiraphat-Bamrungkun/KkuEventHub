@@ -108,7 +108,7 @@ function SearchResultsPage() {
             <div className="search-container">
                 <div
                     className="background2-blur"
-                    style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/0bab/9a40/8077e8cfaf0d7009fbb8615188f3215b?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AEpOvv-Mu02Rik9lIPOE9Q9HoMXKp-BX~LmdrOMiTr~~jA2vG8WD9K3DsKiX1G6uwM-cveJ1~xMGHyU0yztFHeWqNfwWMwp6uftyb0rDAotoBjVmGifZFIW5P4r1p3qDGpYkEik3vG13PHQlV0iI7fc22URJq~ec4UZtC5LUJWIWUinzLLDQco~Bjz8YXNz2hvYd4FWAQIIjU2oU2hymAFChy6aefAMc2~DllT-0evGip6KYozHS7veNtQu65HhVH8sBQXlR0sBmew2HwiTGCmPRJrqVBlW~5DR0Pe-Gc6GfIByCer-8p~T7XXkM1lZrm9Z8hEi17nOCR-Ywa44itA__)` }}
+                    style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/ab83/4717/51f2cd79743dde1b025ac8302972c347?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=tQx3fcnRatWZfAyaVe10hRB4Q9qJ7895irsOhf4h-1YDzNrkzhXGq4RHUj5-CBHFej7aNGai8kadyeI51Ftmq3~NTidhMSkTwO~vAt0lP7w9~cGevYnuiJfkOBldSXvfrbpWwuhIhmxmR9L2OujHAwNw8w5RZ~X75Me0vHUa8rZgBXsaqBdrY4Ji0mpjMi~N3mQuY6uOWSIMDoeCtv9q3N~v4dP~n4Skpxg9H2AhJARxZGXRkwpv2rw2ybaXsrZwGsrDOcM1rM5uxLXIS~Vv9kaGmKCDLr8jcKV6F74HRYK354BxBijz25I1iXYHv4FaQ1h0fneatEEG~84Myr1S1A__)` }}
                 />
                 <div className="search-header">
                     <Link to="/" className="back-button">

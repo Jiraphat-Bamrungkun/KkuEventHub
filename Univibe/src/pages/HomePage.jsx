@@ -85,7 +85,7 @@ function Home() {
       <section id="events-container">
       <div
           className="background1-blur"
-          style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/4895/aeda/0314aeec38a4572bf060f476047b6fe1?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=OHXDLArM11NoWbsDyzJY5sj4TN5EQSXjr2XHQlORpsT0r6z33M0dJVsWjYfobbsR8xBdydUk2uRW~dc38wNKgXpq2nlvH1budvmZXmF7aVIOvoEgb7Prh8bWy2Y4ZZkTa0u-FBYhrl4G3fXSHZpCdwco8NHtM~gMmsIyTZsQOYEPRfjYn~rA8RiLW3F6UjqVnnT0LZTTKd7iR~66k7I8MDsRVvF~e7QPcm6EyvoxAzk7c6hPagpm2nBUO4nd1hSzghCgof4eXWuXLE1crstllaaMx9sW5SRzDYRSWFn57WXaNbHf633CfjQvLKOJ4IkVuWn3EvUXfheazcqTMjs~9Q__)` }}
+          style={{ backgroundImage: `url(https://s3-alpha-sig.figma.com/img/ab83/4717/51f2cd79743dde1b025ac8302972c347?Expires=1743379200&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=tQx3fcnRatWZfAyaVe10hRB4Q9qJ7895irsOhf4h-1YDzNrkzhXGq4RHUj5-CBHFej7aNGai8kadyeI51Ftmq3~NTidhMSkTwO~vAt0lP7w9~cGevYnuiJfkOBldSXvfrbpWwuhIhmxmR9L2OujHAwNw8w5RZ~X75Me0vHUa8rZgBXsaqBdrY4Ji0mpjMi~N3mQuY6uOWSIMDoeCtv9q3N~v4dP~n4Skpxg9H2AhJARxZGXRkwpv2rw2ybaXsrZwGsrDOcM1rM5uxLXIS~Vv9kaGmKCDLr8jcKV6F74HRYK354BxBijz25I1iXYHv4FaQ1h0fneatEEG~84Myr1S1A__)` }}
         />
         {loading ? (
           <div className="loading-container">

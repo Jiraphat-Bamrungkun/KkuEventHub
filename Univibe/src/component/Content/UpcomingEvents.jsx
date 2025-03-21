@@ -15,7 +15,6 @@ export default function UpcomingEvents({ upcomingEvents = [] }) {
             // การ์ดเปล่า
             <div className="card empty-card" key={`empty-${index}`}>
               <div className="photo empty-photo">
-                <img src="/images/default-event.jpg" alt="No upcoming event" />
               </div>
               <div className="date">เร็วๆ นี้</div>
               <div className="Name">{event.title}</div>
