@@ -262,7 +262,7 @@ export default function Detail() {
             </div>
 
             <div className="more-info-toggle" onClick={() => setShowDetailedView(true)}>
-              <span>More Info</span>
+              <span>แสดงรายละเอียดเพิ่มเติม</span>
               <ExpandMoreIcon />
             </div>
           </>
@@ -413,7 +413,7 @@ export default function Detail() {
             </div>
 
             <div className="more-info-toggle" onClick={() => setShowDetailedView(false)}>
-              <span>Simple View</span>
+              <span>แสดงแบบย่อ</span>
               <ExpandMoreIcon style={{ transform: 'rotate(180deg)' }} />
             </div>
           </>
