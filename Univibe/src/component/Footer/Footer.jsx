@@ -48,11 +48,12 @@ function Footer() {
                 <div className="footer-section categories">
                     <h3>หมวดหมู่กิจกรรม</h3>
                     <ul>
-                        <li><Link to="/search?category=Academic">วิชาการ</Link></li>
-                        <li><Link to="/search?category=Culture">วัฒนธรรม</Link></li>
-                        <li><Link to="/search?category=Sport">กีฬา</Link></li>
-                        <li><Link to="/search?category=Entertainment">บันเทิง</Link></li>
-                        <li><Link to="/search?category=Volunteer">จิตอาสา</Link></li>
+                        <li><Link to="">งานบันเทิง & ไลฟ์สไตล์</Link></li>
+                        <li><Link to="">งานวิชาการ & การศึกษา</Link></li>
+                        <li><Link to="">งานกีฬา & การแข่งขัน</Link></li>
+                        <li><Link to="">งานตลาด & งานแสดงสินค้า</Link></li>
+                        <li><Link to="">งานสังคม & จิตอาสา</Link></li>
+                        <li><Link to="">งานศิลปะ & วัฒนธรรม</Link></li>
                     </ul>
                 </div>
 
