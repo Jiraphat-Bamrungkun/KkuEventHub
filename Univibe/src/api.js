@@ -47,7 +47,6 @@ export const fetchEvents = async () => {
 // สร้างฟังก์ชันให้รองรับการดึงข้อมูลอีเวนต์เฉพาะ
 export async function fetchEventById(id) {
     try {
-        // สมมติว่าใช้ API เดียวกับการดึงข้อมูลทั้งหมด
         const events = await fetchEvents();
         const event = events.find(event => event.id === id || event.id === parseInt(id));
 

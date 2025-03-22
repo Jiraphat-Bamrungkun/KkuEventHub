@@ -50,7 +50,6 @@ function EventCategoryPage() {
             setSelectedCategory('');
         }
 
-        // อ่านพารามิเตอร์สำหรับกรองตามเวลา
         setShowUpcomingEvents(upcomingParam === 'true');
         setShowPastEvents(pastParam === 'true');
     }, [searchParams, setSelectedCategory]);
@@ -93,7 +92,7 @@ function EventCategoryPage() {
         }
     }, [allEvents, activeCategory, showUpcomingEvents, showPastEvents]);
 
-    // จัดการการเปลี่ยนแปลงในช่องค้นหา
+
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setLocalSearchTerm(value);
@@ -101,7 +100,6 @@ function EventCategoryPage() {
         setShowSuggestions(value.trim().length >= 2);
     };
 
-    // จัดการการส่งคำค้นหา
     const handleSubmit = (e) => {
         e.preventDefault();
         if (localSearchTerm.trim()) {
@@ -110,15 +108,14 @@ function EventCategoryPage() {
         }
     };
 
-    // จัดการการคลิกที่ suggestion
     const handleSuggestionClick = (suggestion) => {
         selectSuggestion(suggestion);
         navigate(`/search?term=${encodeURIComponent(suggestion.value)}`);
     };
 
-    // จัดการการเลือกหมวดหมู่
+    // Pick the category
     const handleCategoryClick = (category) => {
-        // อัปเดตพารามิเตอร์ URL
+        
         const params = new URLSearchParams(searchParams);
 
         if (category) {
@@ -127,7 +124,6 @@ function EventCategoryPage() {
             params.delete('category');
         }
 
-        // คงค่าพารามิเตอร์เวลา
         if (showUpcomingEvents) {
             params.set('upcoming', 'true');
         } else {
@@ -144,11 +140,10 @@ function EventCategoryPage() {
         setActiveCategory(category);
     };
 
-    // จัดการการเปลี่ยนแปลงของตัวกรองระยะเวลา
+    // `filtering Upcoming and Recent
     const handleUpcomingEventsChange = (e) => {
         const isChecked = e.target.checked;
 
-        // อัปเดตพารามิเตอร์ URL
         const params = new URLSearchParams(searchParams);
 
         if (isChecked) {
@@ -157,7 +152,6 @@ function EventCategoryPage() {
             params.delete('upcoming');
         }
 
-        // คงค่าพารามิเตอร์อื่น
         if (activeCategory) {
             params.set('category', activeCategory);
         }
@@ -173,7 +167,6 @@ function EventCategoryPage() {
     const handlePastEventsChange = (e) => {
         const isChecked = e.target.checked;
 
-        // อัปเดตพารามิเตอร์ URL
         const params = new URLSearchParams(searchParams);
 
         if (isChecked) {
@@ -182,7 +175,6 @@ function EventCategoryPage() {
             params.delete('past');
         }
 
-        // คงค่าพารามิเตอร์อื่น
         if (activeCategory) {
             params.set('category', activeCategory);
         }
@@ -195,7 +187,7 @@ function EventCategoryPage() {
         setShowPastEvents(isChecked);
     };
 
-    // ล้างตัวกรองทั้งหมด
+    // Clear all the filter
     const handleClearFilters = () => {
         setLocalSearchTerm('');
         setActiveCategory('');
@@ -204,7 +196,7 @@ function EventCategoryPage() {
         setSearchParams({});
     };
 
-    // ฟังก์ชันสำหรับแปลงวันที่ให้อยู่ในรูปแบบที่อ่านง่าย
+    // A function for convert a date format to look more good
     const formatDisplayDate = (dateString) => {
         if (!dateString) return "";
 
@@ -220,7 +212,7 @@ function EventCategoryPage() {
         }
     };
 
-    // แปลงภาษาอังกฤษเป็นไทยสำหรับชื่อหมวดหมู่
+    //  Does use this!!!!
     const translateCategory = (category) => {
         const translations = {
             'Academic': 'วิชาการ',
@@ -236,7 +228,7 @@ function EventCategoryPage() {
         return translations[category] || category;
     };
 
-    // ตรวจสอบว่ามีการใช้ตัวกรองใดๆ หรือไม่
+    // ตรวจสอบว่ามีการใช้ตัวกรองไหม
     const hasActiveFilters = activeCategory || showUpcomingEvents || showPastEvents;
 
     return (
@@ -293,7 +285,7 @@ function EventCategoryPage() {
 
                         <div className="filter-toggle">
                             <button
-                                type="button" // เพิ่ม type="button" เพื่อป้องกันการส่งฟอร์ม
+                                type="button"
                                 className={`filter-toggle-btn ${showFilters ? 'active' : ''}`}
                                 onClick={() => setShowFilters(!showFilters)}
                             >
@@ -304,7 +296,7 @@ function EventCategoryPage() {
 
                             {hasActiveFilters && (
                                 <button
-                                    type="button" // เพิ่ม type="button" เพื่อป้องกันการส่งฟอร์ม
+                                    type="button"
                                     className="clear-filters-btn"
                                     onClick={handleClearFilters}
                                 >
@@ -392,7 +384,7 @@ function EventCategoryPage() {
                         </div>
                     )}
 
-                    {/* Category Quick Filter */}
+                    {/* `simple filter สำหรับหน้าCategory*/}
                     <div className="category-filter">
                         <button
                             type="button"

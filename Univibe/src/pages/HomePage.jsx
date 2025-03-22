@@ -21,7 +21,7 @@ function Home() {
 
         const now = new Date();
 
-        // กรอง upcoming events (วันที่มากกว่าหรือเท่ากับวันนี้)
+        // กรองupcoming events (วันที่มากกว่าหรือเท่ากับวันนี้)
         let upcoming = events
           .filter(e => {
             const eventDate = new Date(e.date);
@@ -30,7 +30,7 @@ function Home() {
           .sort((a, b) => new Date(a.date) - new Date(b.date))
           .slice(0, 6);
 
-        // กรอง recent events (วันที่น้อยกว่าวันนี้)
+        // กรองrecent events (วันที่น้อยกว่าวันนี้)
         const recent = events
           .filter(e => {
             const eventDate = new Date(e.date);
@@ -39,7 +39,7 @@ function Home() {
           .sort((a, b) => new Date(b.date) - new Date(a.date))
           .slice(0, 6);
 
-        // ถ้า upcoming events มีไม่ถึง 6 การ์ด ให้เติมการ์ดเปล่า
+        // ถ้า upcoming events มีไม่ถึง 6การ์ด ให้เติมการ์ดเปล่า
         if (upcoming.length < 6) {
           const emptyCards = Array(6 - upcoming.length).fill().map((_, i) => ({
             id: `empty-${i}`,
@@ -59,7 +59,7 @@ function Home() {
         console.error("Error fetching events:", error);
         setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
 
-        // กรณีมีข้อผิดพลาด ให้แสดงการ์ดเปล่า
+        // กรณีมีข้อผิดพลาด แสดงการ์ดเปล่า
         const emptyUpcoming = Array(6).fill().map((_, i) => ({
           id: `empty-${i}`,
           isEmpty: true,
